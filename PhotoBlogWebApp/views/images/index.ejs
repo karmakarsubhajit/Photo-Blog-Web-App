@@ -1,0 +1,35 @@
+<%- include("../temp/header") %>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1 style="text-align: center;">PhotoBlog!</h1>
+            <p>
+                See the images
+            </p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="images/new"> Add Image</a>
+            </p>
+        </div>
+    </header>
+ 
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+
+
+        <% images.forEach(function(image){ %>
+            <div class="col-md-3 col-sm-6">
+               <div class="iconimg">
+                    <img src="<%= image.image%>">
+                    <div class="caption">
+                        <h4><%= image.name%> </h4>
+                    </div>
+                    <p>
+                      <a href="/images/ <%= image._id%>" class="btn btn-primary"> Next</a>
+                    </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include("../temp/footer") %>

@@ -1,0 +1,19 @@
+.iconimg img{
+    width: 100%;
+
+}
+
+.iconimg{
+    padding: 0;
+
+}
+
+
+.iconimg .caption-full  {
+    padding: 9px;
+}
+
+
+#remove{
+    display: inline;
+}

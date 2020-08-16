@@ -1,0 +1,65 @@
+<%- include("../temp/header") %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">
+                PhotoBlog
+            </p>
+        </div>
+        <div class="col-md-9">
+            <div class="iconimg">
+                <img class="img-responsive" src="<%= image.image %>">
+                <div class="caption-full">
+                
+                   <h4><a><%=image.name%></a></h4>
+                   <p><%=image.description%> </p>
+                   <p>
+                      Posted by: <%= image.author.username %>, <%= moment(image.createdAt).fromNow() %>
+                   </p>   
+                  <% if(currentUser && image.author.id.equals(currentUser._id)){ %>
+                   <a class="btn btn-warning" href="/images/<%= image._id%>/edit">Edit</a>
+                 <form id="remove" action= "/images/<%= image._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">
+                        Delete
+                    </button>
+                </form>    
+                <% }%>
+            </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/images/<%= image._id %>/comments/new">Add Comment</a>
+                </div>
+                <hr>
+                <% image.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                           <strong><%= comment.author.username %></strong> 
+                           <span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
+                            <p>
+                                <%= comment.text %></p>
+                            </p>
+                           
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <form id="remove" action="/images/<%= image._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                            <% } %>
+                        </div>
+                    </div>
+                <%})%>
+            </div>
+        </div>
+    </div>
+
+</div>    
+
+
+
+
+
+
+
+
+
+<%- include("../temp/footer") %>
