@@ -21,9 +21,17 @@ const { route } = require('./routes/comments');
 
 
 
-const port=8000;
+var db_url = process.env.DB_URL || "mongodb://localhost/photo_blog"
+var port = process.env.PORT || "3000"
 
-mongoose.connect("mongodb://localhost/photo_blog");
+
+mongoose.connect(db_url, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+    });
+
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.set("view engine","ejs");
@@ -36,7 +44,7 @@ app.use(flash());
 app.locals.moment = require('moment');
 
 app.use(require("express-session")({
-    secret:"apple is sweet",
+    secret:"hkasddsakjd",
     resave:false,
     saveUninitialized:false
 })) ;
@@ -60,8 +68,5 @@ app.use(indexRoutes);
 app.use("/images",imageRoutes);
 app.use("/images/:id/comments",commentRoutes);
 
-app.listen(port, function(){
-    console.log("PhotoBlog is Running");
 
-});
-
+app.listen(port, process.env.IP);
