@@ -9,6 +9,7 @@ var flash=require('connect-flash');
 
 var Image=require("./models/image");
 var Comment=require("./models/comment");
+var User =require("./models/user");
 
 
 
@@ -16,8 +17,7 @@ var imageRoutes =require("./routes/images");
 var commentRoutes = require("./routes/comments");
 var indexRoutes = require("./routes/index");
 
-var User =require("./models/user");
-const { route } = require('./routes/comments');
+
 
 
 
